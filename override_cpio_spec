@@ -1,0 +1,4 @@
+dir kernel 0755 0 0
+dir kernel/firmware 0755 0 0
+dir kernel/firmware/acpi 0755 0 0
+file kernel/firmware/acpi/dsdt.aml dsdt.aml 0644 0 0

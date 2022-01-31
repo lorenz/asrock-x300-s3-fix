@@ -1,0 +1,24 @@
+diff --git a/source/components/dispatcher/dswload.c b/source/components/dispatcher/dswload.c
+index 91f5b3050..ca87956ef 100644
+--- a/source/components/dispatcher/dswload.c
++++ b/source/components/dispatcher/dswload.c
+@@ -468,8 +468,9 @@ AcpiDsLoad1BeginOp (
+             {
+                 /* The name already exists in this scope */
+ 
++		/* CUSTOM
+                 if (Node->Flags & ANOBJ_IS_EXTERNAL)
+-                {
++                {*/
+                     /*
+                      * Allow one create on an object or segment that was
+                      * previously declared External
+@@ -490,7 +491,7 @@ AcpiDsLoad1BeginOp (
+                     }
+ 
+                     Status = AE_OK;
+-                }
++                //}
+             }
+ 
+             if (ACPI_FAILURE (Status))

@@ -1,0 +1,18 @@
+--- a/dsdt.dsl	2021-09-04 13:18:11.159819320 +0200
++++ b/dsdt.dsl	2021-09-04 13:17:48.139917514 +0200
+@@ -6376,15 +6376,6 @@
+ 
+     Scope (\_SB.PCI0.GPP6)
+     {
+-        Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+-        {
+-            Return (Package (0x02)
+-            {
+-                0x02, 
+-                0x04
+-            })
+-        }
+-
+         Device (WLAN)
+         {
+             Name (_ADR, Zero)  // _ADR: Address
