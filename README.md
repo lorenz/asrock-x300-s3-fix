@@ -1,7 +1,7 @@
 # ASRock DeskMini X300 S3 suspend fix
 
-[Blog post](https://lorenz.brun.one/enabling-s3-sleep-on-a-deskmini-x300) with much more in-depth
-information about this.
+[Blog post](https://lorenz.brun.one/enabling-s3-sleep-on-x300/) with much more in-depth information
+about this.
 
 ## Requirements
 
