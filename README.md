@@ -41,3 +41,14 @@ this file to your initramfs is distro-specific, on NixOS the
 Debian/Ubuntu-based distros `prepend_earlyinitramfs` in a initramfs-tools hook can be used, see
 [this file](https://github.com/naftulikay/thinkpad-yoga-3rd-gen-acpi/blob/88f47bf0922bcbb85e946fabcb8fb86cdcf40b51/etc/initramfs-tools/hooks/acpi-override)
 for reference.
+
+### GRUB (on Archlinux based Distros)
+
+```
+# copy acpi_dsdt_override.cpio to /boot.
+# add this line to your grub configuration file /etc/default/grub.
+GRUB_EARLY_INITRD_LINUX_CUSTOM="acpi_dsdt_override.cpio"
+
+# then generated grub.cfg
+# grub-mkconfig -o /boot/grub/grub.cfg
+```
