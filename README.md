@@ -32,6 +32,8 @@ cd /path/to/this/repo
 sudo cp /sys/firmware/acpi/tables/SSDT1 ssdt1.aml
 sudo cp /sys/firmware/acpi/tables/SSDT6 ssdt6.aml
 sudo cp /sys/firmware/acpi/tables/DSDT dsdt.aml
+sudo chown $(id -un) *.aml
+chmod 640 *.aml
 ./mkoverride.sh
 ```
 
@@ -46,14 +48,38 @@ Add `boot.initrd.prepend = [ "${./acpi_dsdt_override.cpio}" ];` to your configur
 [this file](https://github.com/naftulikay/thinkpad-yoga-3rd-gen-acpi/blob/88f47bf0922bcbb85e946fabcb8fb86cdcf40b51/etc/initramfs-tools/hooks/acpi-override)
 for reference.
 
-### Arch Linux-based distros (with GRUB)
+### Arch Linux-based distros
 
 Copy `acpi_dsdt_override.cpio` to `/boot`.
+
+#### with GRUB
+
 Add this line to your grub configuration file `/etc/default/grub`:
+
 ```
 GRUB_EARLY_INITRD_LINUX_CUSTOM="acpi_dsdt_override.cpio"
 ```
+
 then regenerate grub.cfg:
+
 ```sh
 grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+#### with systemd-boot
+
+Add this line **before** any other `initrd` entries in the desired `/boot/loader/entries/*.conf`:
+
+```
+initrd /acpi_dsdt_override.cpio
+```
+
+Full example:
+
+```
+title Arch Linux
+linux /vmlinuz-linux
+initrd /acpi_dsdt_override.cpio
+initrd /initramfs-linux.img
+options cryptdevice=UUID=57e23788-b609-4489-8025-15dc65062833:cryptlvm cryptkey=/dev/disk/by-label/KEYS:ext2:/disk_work.key root=/dev/volgrp/root splash amd_pstate=passive
 ```
